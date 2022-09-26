@@ -40,7 +40,36 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
-	function order() {
+	function XInt() {
+		let discriminant = b**2 - (4*a*c)
+
+		if (discriminant <0) { 
+			return null
+		}
+		else if (discriminant == 0) {
+			let root = -b / (2*a)
+			if (!isWholeNumber(root)) {
+				rootTemp[0] = toFraction(root)
+			}
+			return rootTemp
+		}
+		else if (discriminant > 0) {
+			let root1 = (-b+ Math.sqrt(discriminant))/ (2*a);
+			let root2 = (-b- Math.sqrt(discriminant))/ (2*a);
+			rootArray = [root1 , root2]
+			rootArray = rootArray.sort()
+			if (!isWholeNumber(rootArray[0])) {
+				rootArray[0] = toFraction(rootArray[0])
+			}
+			if (!isWholeNumber(rootArray[1])) {
+				rootArray[1] = toFraction(rootArray[1])
+			}
+			return rootArray
+		}
+	}
+
+
+	function orderFunction() {
 
         let a_temp = a;
         let b_temp = b;
@@ -57,93 +86,112 @@ function quadraticFormula(a,b,c) {
         if (a == -1){	a_temp = "-";	}
         if (b == -1){	b_temp = "-";	}
 
-        problem = "Formula: " + a_temp + "x^2" + b_temp + "x" + c_temp + "."
-        return problem + "<br><br>";
+		let future_b = b_temp + "x"
+        let future_c = c_temp
+
+        if (b == 0){    future_b = ""	}
+        if (c == 0){    future_c = ""	}
+
+        problem = "<b>Formula: " + a_temp + "x^2" + future_b + future_c;
+        return problem + "</b><br><br>";
     }
 
-
-    document.write (order())
-
-	document.write("Domain: ℝ.<br><br>")
-
-
-	let xVertex = -b / (2*a)
-
-	let yVertex = a*(Math.pow(xVertex,2)) + b*xVertex + c
-
-
-	if (concavity()) {
-		document.write (`Image: (${yVertex} ; +∞).<br><br>`)
-	}
-	else if (!concavity()) {
-		document.write (`Image: (-∞ ; ${yVertex}).<br><br>`)
-	}
-
-
-	document.write(`Vertex: (${xVertex} ; ${yVertex}).<br><br>`)
-
-
-
-	let discriminant = b**2 - (4*a*c)
-
-	if (discriminant <0) { 
-		document.write ("x-Intersection: null.<br><br>")
-	}
-	else if (discriminant == 0) {
-		let root = -b / (2*a)
-		if (isWholeNumber(root) = false) {
-			let rootTemp = toFraction(root)
-			document.write (`x-Intersection: ${rootTemp}.<br><br>`)
-		}
-	}
-	else if (discriminant > 0) {
-		let root1 = (-b+ Math.sqrt(discriminant))/ (2*a);
-		let root2 = (-b- Math.sqrt(discriminant))/ (2*a);
-		let rootTemp1 = root1
-		let rootTemp2 = root2
-		if (!isWholeNumber(root1)) {
-			rootTemp1 = toFraction(root1)
-		}
-		if (!isWholeNumber(root2)) {
-			rootTemp2 = toFraction(root2)
-		}
-		document.write (`x-Intersection: [${rootTemp1} , ${rootTemp2}].<br><br>`)
-	}
-
-
-	document.write(`y-Intersection: ${c}.<br><br>`)
-
-
-	if (concavity()) {
-		document.write ("Concave.<br><br>")
-	}
-	else if (!concavity()) {
-		document.write ("Convex.<br><br>")
-	}
-
-
-	let symmetryAxis = xVertex
-
-	document.write(`Symmetry Axis: ${symmetryAxis}.<br><br>`)
-
+	function fConcavity() {
 		if (concavity()) {
-		document.write (`Increasement: (${symmetryAxis} ; +∞).<br><br>`)
-		document.write (`Decreasement: (-∞ ; ${symmetryAxis}).<br><br>`)
+			return "Concave.<br><br>"
+		}
+		else if (!concavity()) {
+			return "Convex.<br><br>"
+		}
 	}
-	else if (!concavity()) {
-		document.write (`Increasement: (-∞ ; ${symmetryAxis}).<br><br>`)
-		document.write (`Decreasement: (${symmetryAxis} ; +∞).<br><br>`)
+
+    function Domain() {
+    	return "Domain: ℝ.<br><br>"
+    }
+
+	function Image() {
+		if (concavity()) {
+			return `Image: (${Vertex()[1]} ; +∞).<br><br>`
+		}
+		else if (!concavity()) {
+			return `Image: (-∞ ; ${Vertex()[1]}).<br><br>`
+		}
+	}
+
+	function PosNeg() {
+		if (concavity()) {
+			posNegArray = []
+			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+			posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+			return posNegArray
+		}
+		else if (!concavity()) {
+			posNegArray = []
+			posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+			return posNegArray
+		}
+	}
+
+	function IncDec() {
+		if (concavity()) {
+			IncDecArray = []
+			IncDecArray[0] = `Increasement: (${SymAxis()} ; +∞).<br><br>`
+			IncDecArray[1] = `Decreasement: (-∞ ; ${SymAxis()}).<br><br>`
+			return IncDecArray
+		}
+		else if (!concavity()) {
+			IncDecArray = []
+			IncDecArray[0] = `Increasement: (-∞ ; ${SymAxis()}).<br><br>`
+			IncDecArray[1] = `Decreasement: (${SymAxis()} ; +∞).<br><br>`
+			return IncDecArray
+		}
+	}
+
+	function SymAxis() {
+		symmetryAxis = Vertex()[1]
+		return symmetryAxis
+	}
+
+	function Vertex() {
+		xVertex = -b / (2*a)
+
+		yVertex = a*(Math.pow(xVertex,2)) + b*xVertex + c
+
+		return [xVertex , yVertex]
 	}
 
 
+	// function showAxesInt() {
+ //    	document.write(`Axes Intersections: (${rootTemp1} ; 0) ; (${rootTemp2} ; 0) ; (0 ; ${c})<br><br>`)
+ //    }
+
+	document.write(orderFunction())
+
+	document.write(fConcavity())
+
+	document.write(Domain())
+
+	document.write(Image())
+
+	document.write(PosNeg()[0] , PosNeg()[1])
+
+	document.write(IncDec()[0] , IncDec()[1])
+
+	// showAxesInt()
+
+	document.write(`Symmetry Axis: ${SymAxis()}.<br><br>`)
+
+
+	document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`)
 
 
 }
 // quadraticFormula(6,-5,1)
 // quadraticFormula(1,-5,6)
 // quadraticFormula(2,5,-3)
-quadraticFormula(-1,-2,3)
+// quadraticFormula(-1,-2,3)
+// quadraticFormula (1,0,-18)
+// quadraticFormula (1,1,1)
+quadraticFormula (-1,-2,3)
 
-// Falta conjuntos de positividad, negatividad
-// se puede determinar organizando las raices de menor a mayor
-// dependiendo si es concava o convexa utilizar estos datos para determinar
