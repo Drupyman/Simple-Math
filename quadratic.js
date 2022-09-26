@@ -44,7 +44,7 @@ function quadraticFormula(a,b,c) {
 		rootArray = []
 
 		if (discriminant <0) { 
-			rootArray[0] = null
+			rootArray = []
 			return rootArray
 		}
 		else if (discriminant == 0) {
@@ -149,6 +149,19 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+	function AxesInt() {
+		discriminant = b**2 - (4*a*c)
+		if (discriminant <0) { 
+			return `Axes Intersections: (0 ; ${c})<br><br>`
+		}
+		else if (discriminant == 0) {
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (0 ; ${c})<br><br>`
+		}
+		else if (discriminant > 0) {
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (${XInt()[1]} ; 0) ; (0 ; ${c})<br><br>`
+		}
+	}
+
 	function SymAxis() {
 		symmetryAxis = Vertex()[1]
 		return symmetryAxis
@@ -163,10 +176,6 @@ function quadraticFormula(a,b,c) {
 	}
 
 
-	function showAxesInt() {
-    	document.write(`Axes Intersections: (${rootTemp1} ; 0) ; (${rootTemp2} ; 0) ; (0 ; ${c})<br><br>`)
-    }
-
 	document.write(orderFunction())
 
 	document.write(fConcavity())
@@ -179,20 +188,16 @@ function quadraticFormula(a,b,c) {
 
 	document.write(IncDec()[0] , IncDec()[1])
 
-	// showAxesInt()
+	document.write(AxesInt())
 
 	document.write(`Symmetry Axis: ${SymAxis()}.<br><br>`)
-
 
 	document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`)
 
 
 }
 quadraticFormula(6,-5,1)
-// quadraticFormula(1,-5,6)
-// quadraticFormula(2,5,-3)
-// quadraticFormula(-1,-2,3)
-// quadraticFormula (1,0,-18)
-// quadraticFormula (-1,-2,3)
-// quadraticFormula (1,1,1)
-// quadraticFormula (0,0,0)
+quadraticFormula(1,-5,6)
+quadraticFormula(2,5,-3)
+quadraticFormula(-1,-2,3)
+quadraticFormula (-1,-2,3)
