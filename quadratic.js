@@ -35,23 +35,24 @@ function quadraticFormula(a,b,c) {
 	    	return `${numerator}/${denominator}`
 	    }
 	    else {
-	    	numeratorTemp = (num*denominator) + numerator
-	    	return `${numeratorTemp}/${denominator}`
+	    	return `${((num*denominator) + numerator)}/${denominator}`
 		}
 	}
 
 	function XInt() {
 		let discriminant = b**2 - (4*a*c)
+		rootArray = []
 
 		if (discriminant <0) { 
-			return null
+			rootArray[0] = null
+			return rootArray
 		}
 		else if (discriminant == 0) {
 			let root = -b / (2*a)
 			if (!isWholeNumber(root)) {
-				rootTemp[0] = toFraction(root)
+				rootArray[0] = toFraction(root)
 			}
-			return rootTemp
+			return rootArray
 		}
 		else if (discriminant > 0) {
 			let root1 = (-b+ Math.sqrt(discriminant))/ (2*a);
@@ -162,9 +163,9 @@ function quadraticFormula(a,b,c) {
 	}
 
 
-	// function showAxesInt() {
- //    	document.write(`Axes Intersections: (${rootTemp1} ; 0) ; (${rootTemp2} ; 0) ; (0 ; ${c})<br><br>`)
- //    }
+	function showAxesInt() {
+    	document.write(`Axes Intersections: (${rootTemp1} ; 0) ; (${rootTemp2} ; 0) ; (0 ; ${c})<br><br>`)
+    }
 
 	document.write(orderFunction())
 
@@ -187,11 +188,11 @@ function quadraticFormula(a,b,c) {
 
 
 }
-// quadraticFormula(6,-5,1)
+quadraticFormula(6,-5,1)
 // quadraticFormula(1,-5,6)
 // quadraticFormula(2,5,-3)
 // quadraticFormula(-1,-2,3)
 // quadraticFormula (1,0,-18)
+// quadraticFormula (-1,-2,3)
 // quadraticFormula (1,1,1)
-quadraticFormula (-1,-2,3)
-
+// quadraticFormula (0,0,0)
