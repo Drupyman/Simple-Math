@@ -12,7 +12,8 @@ function quadraticFormula(a,b,c) {
 	function isWholeNumber(number){
 	    if (number % 1 == 0) {
 	        return true;
-	    } else {
+	    } 
+	    else {
 	        return false;
 	    }
 	}
@@ -44,11 +45,11 @@ function quadraticFormula(a,b,c) {
 		rootArray = []
 
 		if (discriminant <0) { 
-			rootArray = []
 			return rootArray
 		}
 		else if (discriminant == 0) {
 			let root = -b / (2*a)
+			rootArray[0] = root
 			if (!isWholeNumber(root)) {
 				rootArray[0] = toFraction(root)
 			}
@@ -68,7 +69,6 @@ function quadraticFormula(a,b,c) {
 			return rootArray
 		}
 	}
-
 
 	function orderFunction() {
 
@@ -120,17 +120,50 @@ function quadraticFormula(a,b,c) {
 	}
 
 	function PosNeg() {
-		if (concavity()) {
-			posNegArray = []
-			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-			posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-			return posNegArray
+		let discriminant = b**2 - (4*a*c)
+
+
+		if (discriminant < 0) {
+			if (concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: (-∞ ; +∞).<br><br>`
+				posNegArray[1] = `Negativity: null.<br><br>`
+				return posNegArray
+			}
+			else if (!concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: null.<br><br>`
+				posNegArray[1] = `Negativity: (-∞ ; +∞).<br><br>`
+				return posNegArray
+			}
 		}
-		else if (!concavity()) {
-			posNegArray = []
-			posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-			return posNegArray
+		else if (discriminant == 0) {
+			if (concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
+				posNegArray[1] = `Negativity: null.<br><br>`
+				return posNegArray
+			}
+			else if (!concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: null.<br><br>`
+				posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
+				return posNegArray
+			}
+		}
+		else if (discriminant > 0) {
+			if (concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+				posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+				return posNegArray
+			}
+			else if (!concavity()) {
+				posNegArray = []
+				posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+				posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+				return posNegArray
+			}
 		}
 	}
 
@@ -163,7 +196,7 @@ function quadraticFormula(a,b,c) {
 	}
 
 	function SymAxis() {
-		symmetryAxis = Vertex()[1]
+		symmetryAxis = Vertex()[0]
 		return symmetryAxis
 	}
 
@@ -174,7 +207,6 @@ function quadraticFormula(a,b,c) {
 
 		return [xVertex , yVertex]
 	}
-
 
 	document.write(orderFunction())
 
@@ -194,10 +226,20 @@ function quadraticFormula(a,b,c) {
 
 	document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`)
 
-
 }
-quadraticFormula(6,-5,1)
-quadraticFormula(1,-5,6)
-quadraticFormula(2,5,-3)
-quadraticFormula(-1,-2,3)
-quadraticFormula (-1,-2,3)
+
+// quadraticFormula(-1,4,-3)
+// quadraticFormula(1,2,1)
+// quadraticFormula(1,1,1)
+
+// quadraticFormula(1,-7,-18)
+// quadraticFormula(3,12,-5)
+
+// quadraticFormula(1,-5,3)
+// quadraticFormula(2,-5,4)
+// quadraticFormula(1,-4,4)
+// quadraticFormula(-1,-1,3)
+
+// quadraticFormula(1,0,2)
+// quadraticFormula(1,0,-2)
+
