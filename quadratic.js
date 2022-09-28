@@ -94,7 +94,7 @@ function quadraticFormula(a,b,c) {
         if (c == 0){    future_c = ""	}
 
         problem = "<b>Formula: " + a_temp + "x^2" + future_b + future_c;
-        return problem + "</b><br><br>";
+        return problem + ".</b><br><br>";
     }
 
 	function fConcavity() {
@@ -185,13 +185,13 @@ function quadraticFormula(a,b,c) {
 	function AxesInt() {
 		discriminant = b**2 - (4*a*c)
 		if (discriminant <0) { 
-			return `Axes Intersections: (0 ; ${c})<br><br>`
+			return `Axes Intersections: (0 ; ${c}).<br><br>`
 		}
 		else if (discriminant == 0) {
-			return `Axes Intersections: (${XInt()[0]} ; 0) ; (0 ; ${c})<br><br>`
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (0 ; ${c}).<br><br>`
 		}
 		else if (discriminant > 0) {
-			return `Axes Intersections: (${XInt()[0]} ; 0) ; (${XInt()[1]} ; 0) ; (0 ; ${c})<br><br>`
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (${XInt()[1]} ; 0) ; (0 ; ${c}).<br><br>`
 		}
 	}
 
@@ -208,38 +208,26 @@ function quadraticFormula(a,b,c) {
 		return [xVertex , yVertex]
 	}
 
-	document.write(orderFunction())
+	if (a == 0) {
+		document.write("These parameters are not from a quadratic function.<br><br>")
+	}
+	else {
+		document.write(orderFunction())
 
-	document.write(fConcavity())
+		document.write(fConcavity())
 
-	document.write(Domain())
+		document.write(Domain())
 
-	document.write(Image())
+		document.write(Image())
 
-	document.write(PosNeg()[0] , PosNeg()[1])
+		document.write(PosNeg()[0] , PosNeg()[1])
 
-	document.write(IncDec()[0] , IncDec()[1])
+		document.write(IncDec()[0] , IncDec()[1])
 
-	document.write(AxesInt())
+		document.write(AxesInt())
 
-	document.write(`Symmetry Axis: ${SymAxis()}.<br><br>`)
+		document.write(`Symmetry Axis: ${SymAxis()}.<br><br>`)
 
-	document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`)
-
+		document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br><br>`)
+	}
 }
-
-// quadraticFormula(-1,4,-3)
-// quadraticFormula(1,2,1)
-// quadraticFormula(1,1,1)
-
-// quadraticFormula(1,-7,-18)
-// quadraticFormula(3,12,-5)
-
-// quadraticFormula(1,-5,3)
-// quadraticFormula(2,-5,4)
-// quadraticFormula(1,-4,4)
-// quadraticFormula(-1,-1,3)
-
-// quadraticFormula(1,0,2)
-// quadraticFormula(1,0,-2)
-
