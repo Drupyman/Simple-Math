@@ -20,8 +20,8 @@ function quadraticFormula(a,b,c) {
 
 	function toFraction(decimal){
 	    let num = Math.trunc(decimal)
-	    let decimal_dism = parseFloat(decimal.toFixed(2));
-	    let zero_d = parseFloat((decimal_dism - num).toFixed(2));
+	    let decimal_dim = parseFloat(decimal.toFixed(2));
+	    let zero_d = parseFloat((decimal_dim - num).toFixed(2));
 
 	    let numerator = parseInt(zero_d*100);
 	    let denominator = 100;
