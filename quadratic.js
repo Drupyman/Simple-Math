@@ -93,7 +93,7 @@ function quadraticFormula(a,b,c) {
 		if (b == 0){    future_b = ""	}
 		if (c == 0){    future_c = ""	}
 
-		problem = "<b>Formula: " + a_temp + "x^2" + future_b + future_c;
+		problem = "<b>Formula: " + a_temp + "x²" + future_b + future_c;
 		return problem + "</b><br><br>";
 	}
 
