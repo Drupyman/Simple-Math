@@ -10,33 +10,33 @@ function quadraticFormula(a,b,c) {
 	}
 
 	function isWholeNumber(number){
-	    if (number % 1 == 0) {
-	        return true;
-	    } 
-	    else {
-	        return false;
-	    }
+		if (number % 1 == 0) {
+				return true;
+		} 
+		else {
+				return false;
+		}
 	}
 
 	function toFraction(decimal){
-	    let num = Math.trunc(decimal)
-	    let decimal_dism = parseFloat(decimal.toFixed(2));
-	    let zero_d = parseFloat((decimal_dism - num).toFixed(2));
+		let num = Math.trunc(decimal)
+		let decimal_dism = parseFloat(decimal.toFixed(2));
+		let zero_d = parseFloat((decimal_dism - num).toFixed(2));
 
-	    let numerator = parseInt(zero_d*100);
-	    let denominator = 100;
-	    for (let i = 1; i <= 100; i++) {
-	        if (numerator % i === 0 && denominator % i === 0) {
-	            numerator = numerator / i;
-	            denominator = denominator / i;
-	            i = 1;
-	        }
-	    }
-	    if (num == 0) {
-	    	return `${numerator}/${denominator}`
-	    }
-	    else {
-	    	return `${((num*denominator) + numerator)}/${denominator}`
+		let numerator = parseInt(zero_d*100);
+		let denominator = 100;
+		for (let i = 1; i <= 100; i++) {
+				if (numerator % i === 0 && denominator % i === 0) {
+						numerator = numerator / i;
+						denominator = denominator / i;
+						i = 1;
+				}
+		}
+		if (num == 0) {
+			return `${numerator}/${denominator}`
+		}
+		else {
+			return `${((num*denominator) + numerator)}/${denominator}`
 		}
 	}
 
@@ -72,30 +72,30 @@ function quadraticFormula(a,b,c) {
 
 	function orderFunction() {
 
-        let a_temp = a;
-        let b_temp = b;
-        let c_temp = c;
-        let problem = ""
+		let a_temp = a;
+		let b_temp = b;
+		let c_temp = c;
+		let problem = ""
 
 
-        if (b > 0){	  b_temp = "+"+b;	}
-        if (c > 0){   c_temp = "+"+c;	}
+		if (b > 0){	  b_temp = "+"+b;	}
+		if (c > 0){   c_temp = "+"+c;	}
 
 
-        if (a == 1){	a_temp = "";	}
-        if (b == 1){	b_temp = "+";	}
-        if (a == -1){	a_temp = "-";	}
-        if (b == -1){	b_temp = "-";	}
+		if (a == 1){	a_temp = "";	}
+		if (b == 1){	b_temp = "+";	}
+		if (a == -1){	a_temp = "-";	}
+		if (b == -1){	b_temp = "-";	}
 
 		let future_b = b_temp + "x"
-        let future_c = c_temp
+		let future_c = c_temp
 
-        if (b == 0){    future_b = ""	}
-        if (c == 0){    future_c = ""	}
+		if (b == 0){    future_b = ""	}
+		if (c == 0){    future_c = ""	}
 
-        problem = "<b>Formula: " + a_temp + "x^2" + future_b + future_c;
-        return problem + "</b><br><br>";
-    }
+		problem = "<b>Formula: " + a_temp + "x^2" + future_b + future_c;
+		return problem + "</b><br><br>";
+	}
 
 	function fConcavity() {
 		if (concavity()) {
@@ -107,7 +107,7 @@ function quadraticFormula(a,b,c) {
 	}
 
     function Domain() {
-    	return "Domain: ℝ.<br><br>"
+			return "Domain: ℝ.<br><br>"
     }
 
 	function Image() {
@@ -121,7 +121,6 @@ function quadraticFormula(a,b,c) {
 
 	function PosNeg() {
 		let discriminant = b**2 - (4*a*c)
-
 
 		if (discriminant < 0) {
 			if (concavity()) {
@@ -208,31 +207,51 @@ function quadraticFormula(a,b,c) {
 		return [xVertex , yVertex]
 	}
 
-	document.write(orderFunction())
-
-	document.write(fConcavity())
-
-	document.write(Domain())
-
-	document.write(Image())
-
-	document.write(PosNeg()[0] , PosNeg()[1])
-
-	document.write(IncDec()[0] , IncDec()[1])
-
-	document.write(AxesInt())
-
-	document.write(`Symmetry Axis: ${SymAxis()}.<br><br>`)
-
-	document.write(`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`)
+	return [orderFunction(),
+		fConcavity(),
+		Domain(),
+		Image(),
+		PosNeg()[0],
+		PosNeg()[1],
+		IncDec()[0],
+		IncDec()[1],
+		AxesInt(),
+		`Symmetry Axis: ${SymAxis()}.<br><br>`,
+		`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`]
 
 }
 
-// quadraticFormula(-1,4,-3)
-// quadraticFormula(1,2,1)
-// quadraticFormula(1,1,1)
+function show() {
+  let a_value = document.getElementById("a").value;
+  let b_value = document.getElementById("b").value;
+  let c_value = document.getElementById("c").value;
+	document.getElementById("parrafo_a").innerHTML ="a: "+a_value;
+	document.getElementById("parrafo_b").innerHTML ="b:"+b_value;
+	document.getElementById("parrafo_c").innerHTML ="c: "+c_value;
+	// quadraticFormula
+	document.getElementById("Formula").innerHTML = quadraticFormula(a_value,b_value,c_value)[0]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[1]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[2]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[3]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[4]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[5]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[6]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[7]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[8]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[9]+
+		"\n"+quadraticFormula(a_value,b_value,c_value)[10];
 
-// quadraticFormula(1,-7,-18)
+	// quadraticFormula(a_value,b_value,c_value)
+}
+// console.log(a)
+// console.log(b)
+// console.log(c)
+
+// quadraticFormula(-1,4,-3)
+// quadraticFormula(1,1,0)
+// quadraticFormula(1,0,1)
+// quadraticFormula(1,0,0)
+
 // quadraticFormula(3,12,-5)
 
 // quadraticFormula(1,-5,3)
@@ -242,4 +261,3 @@ function quadraticFormula(a,b,c) {
 
 // quadraticFormula(1,0,2)
 // quadraticFormula(1,0,-2)
-
