@@ -20,8 +20,8 @@ function quadraticFormula(a,b,c) {
 
 	function toFraction(decimal){
 		let num = Math.trunc(decimal)
-		let decimal_dism = parseFloat(decimal.toFixed(2));
-		let zero_d = parseFloat((decimal_dism - num).toFixed(2));
+		let decimal_dism = parseFloat(decimal).toFixed(2);
+		let zero_d = parseFloat((decimal_dism - num)).toFixed(2);
 
 		let numerator = parseInt(zero_d*100);
 		let denominator = 100;
@@ -106,9 +106,9 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
-    function Domain() {
-			return "Domain: ℝ.<br><br>"
-    }
+	function Domain() {
+		return "Domain: ℝ.<br><br>"
+	}
 
 	function Image() {
 		if (concavity()) {
@@ -122,48 +122,16 @@ function quadraticFormula(a,b,c) {
 	function PosNeg() {
 		let discriminant = b**2 - (4*a*c)
 
-		if (discriminant < 0) {
-			if (concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: (-∞ ; +∞).<br><br>`
-				posNegArray[1] = `Negativity: null.<br><br>`
-				return posNegArray
-			}
-			else if (!concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: null.<br><br>`
-				posNegArray[1] = `Negativity: (-∞ ; +∞).<br><br>`
-				return posNegArray
-			}
+		if (discriminant < 0 && concavity()) {
+			return ["Positivity: (-∞ ; +∞).<br><br>","Negativity: null.<br><br>"]
 		}
-		else if (discriminant == 0) {
-			if (concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
-				posNegArray[1] = `Negativity: null.<br><br>`
-				return posNegArray
-			}
-			else if (!concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: null.<br><br>`
-				posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
-				return posNegArray
-			}
+		if (discriminant < 0 && !concavity()) {
+			return ["Positivity: null.<br><br>","Negativity: (-∞ ; +∞).<br><br>"]
 		}
-		else if (discriminant > 0) {
-			if (concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-				posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-				return posNegArray
-			}
-			else if (!concavity()) {
-				posNegArray = []
-				posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-				posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-				return posNegArray
-			}
+		if (discriminant == 0 && concavity()) {
+			return [`Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`,"Negativity: null.<br><br>"]
 		}
+		return [`Positivity: null.<br><br>`,`Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`]
 	}
 
 	function IncDec() {
@@ -218,17 +186,27 @@ function quadraticFormula(a,b,c) {
 		AxesInt(),
 		`Symmetry Axis: ${SymAxis()}.<br><br>`,
 		`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`]
-
 }
 
 function show() {
-  let a_value = document.getElementById("a").value;
-  let b_value = document.getElementById("b").value;
-  let c_value = document.getElementById("c").value;
+  let a_value = parseInt(document.getElementById("a").value);
+  let b_value = parseInt(document.getElementById("b").value);
+  let c_value = parseInt(document.getElementById("c").value);
+	if (isNaN(a_value)){
+		a_value = 0;
+	}
+	if (isNaN(b_value)){
+		b_value = 0;
+	}
+	if (isNaN(c_value)){
+		c_value = 0;
+	}
 	document.getElementById("parrafo_a").innerHTML ="a: "+a_value;
-	document.getElementById("parrafo_b").innerHTML ="b:"+b_value;
+	document.getElementById("parrafo_b").innerHTML ="b: "+b_value;
 	document.getElementById("parrafo_c").innerHTML ="c: "+c_value;
 	// quadraticFormula
+	
+
 	document.getElementById("Formula").innerHTML = quadraticFormula(a_value,b_value,c_value)[0]+
 		"\n"+quadraticFormula(a_value,b_value,c_value)[1]+
 		"\n"+quadraticFormula(a_value,b_value,c_value)[2]+
@@ -243,6 +221,62 @@ function show() {
 
 	// quadraticFormula(a_value,b_value,c_value)
 }
+
+function canvasGraph(){
+	let canvas = document.querySelector('canvas');
+	let ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	ctx.fillRect(0, 253, 1,1);
+	ctx.fillRect(30,252, 1,1);
+	ctx.fillRect(90,251, 1,1);
+	ctx.fillRect(150,250, 1,1);
+	ctx.fillRect(210,249, 1,1);
+	ctx.fillRect(270,248, 1,1);
+	ctx.fillRect(330,247, 1,1);
+
+	let a = parseInt(document.getElementById("a").value);
+  let b = parseInt(document.getElementById("b").value);
+  let c = parseInt(document.getElementById("c").value);
+
+	const Vertex = () => {
+		let xVertex = -b / (2*a)
+		return [xVertex, a*(Math.pow(xVertex,2)) + b*xVertex + c]
+	}
+
+	// ctx.fillStyle = "#000000";
+	// with the method context we can drasw the graph
+	const point = ({x = 150, y = 50}) => ({
+		a,
+		x,
+		y,
+		w: 1,
+		h: 1,
+		color: "#000000",
+		draw(){
+			ctx.fillStyle = this.color;
+			// for (let x = 0; x < 150; x++){
+			// 	for (let y = 0; y < 251; y++){
+			// 		let y_temp = (this.a < 0) ? y : -y; 
+			// 		// if (this.a < 0){
+			// 		// 	y_temp = -y
+			// 		// } else {
+			// 		// 	y_temp = y
+			// 		// } 
+			// 		ctx.fillRect(this.x+x, this.y+(y_temp), this.w, this.h);
+			// 	}
+			// }
+		}
+	})
+	
+	if (a < 0){
+		point({}).draw()
+	} else {
+		point({y:250}).draw()
+	}
+}
+
+
 // console.log(a)
 // console.log(b)
 // console.log(c)
