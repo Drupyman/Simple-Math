@@ -8,16 +8,15 @@
 </head>
 <body>
 	<h1>Simple Math</h1>
-	<input type="number" name="a" id="a" oninput="show(),canvasGraph()">
-	<input type="number" name="b" id="b" oninput="show(),canvasGraph()">
-	<input type="number" name="c" id="c" oninput="show(),canvasGraph()">
+	<input type="number" name="a" id="a" >
+	<input type="number" name="b" id="b" >
+	<input type="number" name="c" id="c" >
+	<input type="button" name="Draw" value="Draw" onclick="show(),canvasGraph()">
 	<hr/>
-	<canvas class="canvas" width="300" height="300" style="border: 1px solid #000000"></canvas>
-	<hr/>
-	<p id="parrafo_a">a:</p>
-	<p id="parrafo_b">b:</p>
-	<p id="parrafo_c">c:</p>
-	<hr>
+	<canvas class="canvas" width="800" height="800" style="border: 1px solid #000000"></canvas>
+	<p id="parrafo_a"></p>
+	<p id="parrafo_b"></p>
+	<p id="parrafo_c"></p>
 	<p id="Formula"></p>
 </body>
 <script src=quadratic.js></script>

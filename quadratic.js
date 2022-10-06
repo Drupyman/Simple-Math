@@ -201,9 +201,9 @@ function show() {
 	if (isNaN(c_value)){
 		c_value = 0;
 	}
-	document.getElementById("parrafo_a").innerHTML ="a: "+a_value;
-	document.getElementById("parrafo_b").innerHTML ="b: "+b_value;
-	document.getElementById("parrafo_c").innerHTML ="c: "+c_value;
+	document.getElementById("parrafo_a").innerHTML ="A: "+a_value;
+	document.getElementById("parrafo_b").innerHTML ="B: "+b_value;
+	document.getElementById("parrafo_c").innerHTML ="C: "+c_value;
 	// quadraticFormula
 	
 
@@ -222,76 +222,71 @@ function show() {
 	// quadraticFormula(a_value,b_value,c_value)
 }
 
+	let canvas = document.querySelector('canvas');
+
+
 function canvasGraph(){
 	let canvas = document.querySelector('canvas');
 	let ctx = canvas.getContext('2d');
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	ctx.fillRect(0, 253, 1,1);
-	ctx.fillRect(30,252, 1,1);
-	ctx.fillRect(90,251, 1,1);
-	ctx.fillRect(150,250, 1,1);
-	ctx.fillRect(210,249, 1,1);
-	ctx.fillRect(270,248, 1,1);
-	ctx.fillRect(330,247, 1,1);
 
-	let a = parseInt(document.getElementById("a").value);
-  let b = parseInt(document.getElementById("b").value);
-  let c = parseInt(document.getElementById("c").value);
+	ctx.fillRect(80,400,1,1)
+	ctx.fillRect(160,400,1,1)
+	ctx.fillRect(240,400,1,1)
+	ctx.fillRect(320,400,1,1)
+	ctx.fillRect(480,400,1,1)
+	ctx.fillRect(560,400,1,1)
+	ctx.fillRect(640,400,1,1)
+	ctx.fillRect(720,400,1,1)
 
-	const Vertex = () => {
-		let xVertex = -b / (2*a)
-		return [xVertex, a*(Math.pow(xVertex,2)) + b*xVertex + c]
-	}
+	ctx.fillRect(400,400,1,1)
 
-	// ctx.fillStyle = "#000000";
-	// with the method context we can drasw the graph
-	const point = ({x = 150, y = 50}) => ({
-		a,
-		x,
-		y,
-		w: 1,
-		h: 1,
-		color: "#000000",
-		draw(){
-			ctx.fillStyle = this.color;
-			// for (let x = 0; x < 150; x++){
-			// 	for (let y = 0; y < 251; y++){
-			// 		let y_temp = (this.a < 0) ? y : -y; 
-			// 		// if (this.a < 0){
-			// 		// 	y_temp = -y
-			// 		// } else {
-			// 		// 	y_temp = y
-			// 		// } 
-			// 		ctx.fillRect(this.x+x, this.y+(y_temp), this.w, this.h);
-			// 	}
-			// }
+	ctx.fillRect(400,80,1,1)
+	ctx.fillRect(400,160,1,1)
+	ctx.fillRect(400,240,1,1)
+	ctx.fillRect(400,320,1,1)
+	ctx.fillRect(400,480,1,1)
+	ctx.fillRect(400,560,1,1)
+	ctx.fillRect(400,640,1,1)
+	ctx.fillRect(400,720,1,1)
+
+
+	function getCoords() {
+
+		let a = parseInt(document.getElementById("a").value);
+		let b = parseInt(document.getElementById("b").value);
+		let c = parseInt(document.getElementById("c").value);
+
+		function Coordinates(xCoord) {
+			let yCoord =a*(Math.pow(xCoord,2)) + (b*xCoord) + c;
+			return [xCoord,yCoord]
 		}
-	})
-	
-	if (a < 0){
-		point({}).draw()
-	} else {
-		point({y:250}).draw()
+
+		coords = []
+
+		for (let i = -5; i < 4.99;) {
+			i = i + 0.01;
+			coords.push(Coordinates(i))
+		}
+
+		console.clear()
+
+		for (let i = 0; i < coords.length; i++) {
+			console.log(coords[i])
+		}
+
+		console.log(coords.length)
+
 	}
+
+	function draw() {
+		for (let i = 0; i < coords.length; i++) {
+			ctx.fillRect((coords[i][0]*80),(800-(coords[i][1]*80)),1,1)
+		}
+	}
+
+	getCoords()
+	draw()
+
 }
-
-
-// console.log(a)
-// console.log(b)
-// console.log(c)
-
-// quadraticFormula(-1,4,-3)
-// quadraticFormula(1,1,0)
-// quadraticFormula(1,0,1)
-// quadraticFormula(1,0,0)
-
-// quadraticFormula(3,12,-5)
-
-// quadraticFormula(1,-5,3)
-// quadraticFormula(2,-5,4)
-// quadraticFormula(1,-4,4)
-// quadraticFormula(-1,-1,3)
-
-// quadraticFormula(1,0,2)
-// quadraticFormula(1,0,-2)
