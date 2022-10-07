@@ -1,5 +1,6 @@
 function quadraticFormula(a,b,c) {
 
+
 	function concavity() {
 		if (a > 0) {
 			return true
@@ -9,14 +10,16 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+
 	function isWholeNumber(number){
 		if (number % 1 == 0) {
-				return true;
+			return true;
 		} 
 		else {
-				return false;
+			return false;
 		}
 	}
+
 
 	function toFraction(decimal){
 		let num = Math.trunc(decimal)
@@ -26,11 +29,11 @@ function quadraticFormula(a,b,c) {
 		let numerator = parseInt(zero_d*100);
 		let denominator = 100;
 		for (let i = 1; i <= 100; i++) {
-				if (numerator % i === 0 && denominator % i === 0) {
-						numerator = numerator / i;
-						denominator = denominator / i;
-						i = 1;
-				}
+			if (numerator % i === 0 && denominator % i === 0) {
+				numerator = numerator / i;
+				denominator = denominator / i;
+				i = 1;
+			}
 		}
 		if (num == 0) {
 			return `${numerator}/${denominator}`
@@ -39,6 +42,7 @@ function quadraticFormula(a,b,c) {
 			return `${((num*denominator) + numerator)}/${denominator}`
 		}
 	}
+
 
 	function XInt() {
 		let discriminant = b**2 - (4*a*c)
@@ -70,6 +74,7 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+
 	function orderFunction() {
 
 		let a_temp = a;
@@ -97,6 +102,7 @@ function quadraticFormula(a,b,c) {
 		return problem + "</b><br><br>";
 	}
 
+
 	function fConcavity() {
 		if (concavity()) {
 			return "Concave.<br><br>"
@@ -106,9 +112,11 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+
 	function Domain() {
 		return "Domain: ℝ.<br><br>"
 	}
+
 
 	function Image() {
 		if (concavity()) {
@@ -119,7 +127,6 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
-// Broken Code
 
 	function PosNeg() {
 		let discriminant = b**2 - (4*a*c)
@@ -133,59 +140,16 @@ function quadraticFormula(a,b,c) {
 		if (discriminant == 0 && concavity()) {
 			return [`Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`,"Negativity: null.<br><br>"]
 		}
-		return [`Positivity: null.<br><br>`,`Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`]
+		if (discriminant == 0 && !concavity()) {
+			return ["Positivity: null.<br><br>",`Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`]
+		}
+		if (discriminant > 0 && concavity()) {
+			return [`Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`,`Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`]
+		}
+		if (discriminant > 0 && !concavity()) {
+			return [`Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`,`Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`]
+		}
 	}
-
-// Good Code to Convert
-
-
-	// function PosNeg() {
-	// 	let discriminant = b**2 - (4*a*c)
-
-
-	// 	if (discriminant < 0) {
-	// 		if (concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: (-∞ ; +∞).<br><br>`
-	// 			posNegArray[1] = `Negativity: null.<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 		else if (!concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: null.<br><br>`
-	// 			posNegArray[1] = `Negativity: (-∞ ; +∞).<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 	}
-	// 	else if (discriminant == 0) {
-	// 		if (concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
-	// 			posNegArray[1] = `Negativity: null.<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 		else if (!concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: null.<br><br>`
-	// 			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 	}
-	// 	else if (discriminant > 0) {
-	// 		if (concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-	// 			posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 		else if (!concavity()) {
-	// 			posNegArray = []
-	// 			posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
-	// 			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
-	// 			return posNegArray
-	// 		}
-	// 	}
-	// }
 
 
 	function IncDec() {
@@ -203,6 +167,7 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+
 	function AxesInt() {
 		discriminant = b**2 - (4*a*c)
 		if (discriminant <0) { 
@@ -216,10 +181,12 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+
 	function SymAxis() {
 		symmetryAxis = Vertex()[0]
 		return symmetryAxis
 	}
+
 
 	function Vertex() {
 		xVertex = -b / (2*a)
@@ -242,10 +209,12 @@ function quadraticFormula(a,b,c) {
 		`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`]
 }
 
+
 function show() {
-  let a_value = parseInt(document.getElementById("a").value);
-  let b_value = parseInt(document.getElementById("b").value);
-  let c_value = parseInt(document.getElementById("c").value);
+	let a_value = parseInt(document.getElementById("a").value);
+	let b_value = parseInt(document.getElementById("b").value);
+	let c_value = parseInt(document.getElementById("c").value);
+
 	if (isNaN(a_value)){
 		a_value = 0;
 	}
@@ -255,6 +224,7 @@ function show() {
 	if (isNaN(c_value)){
 		c_value = 0;
 	}
+
 	document.getElementById("parrafo_a").innerHTML ="A: "+a_value;
 	document.getElementById("parrafo_b").innerHTML ="B: "+b_value;
 	document.getElementById("parrafo_c").innerHTML ="C: "+c_value;
@@ -281,11 +251,13 @@ function canvasGraph(){
 	let ctx = canvas.getContext('2d');
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+
 	function getCoords() {
 
 		let a = parseInt(document.getElementById("a").value);
 		let b = parseInt(document.getElementById("b").value);
 		let c = parseInt(document.getElementById("c").value);
+
 
 		function Coordinates(xCoord) {
 			let yCoord =a*(Math.pow(xCoord,2)) + (b*xCoord) + c;
@@ -294,36 +266,24 @@ function canvasGraph(){
 
 		coords = []
 
-		for (let i = -5; i < 4.99;) {
-			i = i + 0.01;
+		for (let i = -5; i < 4.9999;) {
+			i = i + 0.0004;
 			coords.push(Coordinates(i))
 		}
 
-		console.clear()
-
-		for (let i = 0; i < coords.length; i++) {
-			console.log(coords[i])
-		}
-
-		console.log(coords.length)
-
 	}
 
-	// function drawFunction() {
-	// 	for (let i = 0; i < coords.length; i++) {
-	// 		ctx.fillRect(((coords[i][0]*80)+400),((800-(coords[i][1]*80))-400),1,1)
-	// 	}
-	// }
 
 	function drawFunction() {
 		for (let i = 0; i < coords.length; i++) {
+			inext = i++
 			ctx.moveTo( ((coords[i][0]*80)+400) , ((800-(coords[i][1]*80))-400) );
-			// ctx.lineTo( ((coords[i+1][0]*80)+400) , ((800-(coords[i+1][1]*80))-400) );
+			ctx.lineTo( ((coords[inext][0]*80)+400) , ((800-(coords[inext][1]*80))-400) );
 		}
 		ctx.strokeStyle = "#f00";
 		ctx.stroke();
-
 	}
+
 
 	function showAxes() {
 
@@ -393,8 +353,10 @@ function canvasGraph(){
 		ctx.stroke();
 	}
 
+
 	getCoords()
 	drawFunction()
 	showAxes()
+
 
 }
