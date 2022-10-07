@@ -274,35 +274,11 @@ function show() {
 
 }
 
-	let canvas = document.querySelector('canvas');
-
 
 function canvasGraph(){
+
 	let canvas = document.querySelector('canvas');
 	let ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
-	ctx.fillRect(80,400,1,1)
-	ctx.fillRect(160,400,1,1)
-	ctx.fillRect(240,400,1,1)
-	ctx.fillRect(320,400,1,1)
-	ctx.fillRect(480,400,1,1)
-	ctx.fillRect(560,400,1,1)
-	ctx.fillRect(640,400,1,1)
-	ctx.fillRect(720,400,1,1)
-
-	ctx.fillRect(400,400,1,1)
-
-	ctx.fillRect(400,80,1,1)
-	ctx.fillRect(400,160,1,1)
-	ctx.fillRect(400,240,1,1)
-	ctx.fillRect(400,320,1,1)
-	ctx.fillRect(400,480,1,1)
-	ctx.fillRect(400,560,1,1)
-	ctx.fillRect(400,640,1,1)
-	ctx.fillRect(400,720,1,1)
-
 
 	function getCoords() {
 
@@ -332,13 +308,82 @@ function canvasGraph(){
 
 	}
 
-	function draw() {
+	function drawFunction() {
 		for (let i = 0; i < coords.length; i++) {
 			ctx.fillRect(((coords[i][0]*80)+400),((800-(coords[i][1]*80))-400),1,1)
 		}
 	}
 
+	function showAxes() {
+
+		ctx.moveTo(0,400);
+		ctx.lineTo(800,400);
+
+		ctx.moveTo(400,0);
+		ctx.lineTo(400,800);
+
+		ctx.strokeStyle = "#f00";
+		ctx.stroke();
+
+
+		ctx.moveTo(80,395);
+		ctx.lineTo(80,405);
+
+		ctx.moveTo(160,395);
+		ctx.lineTo(160,405);
+
+		ctx.moveTo(240,395);
+		ctx.lineTo(240,405);
+
+		ctx.moveTo(320,395);
+		ctx.lineTo(320,405);
+
+		ctx.moveTo(480,395);
+		ctx.lineTo(480,405);
+
+		ctx.moveTo(560,395);
+		ctx.lineTo(560,405);
+
+		ctx.moveTo(640,395);
+		ctx.lineTo(640,405);
+
+		ctx.moveTo(720,395);
+		ctx.lineTo(720,405);
+
+		ctx.strokeStyle = "#f00";
+		ctx.stroke();
+
+
+		ctx.moveTo(395,80);
+		ctx.lineTo(405,80);
+
+		ctx.moveTo(395,160);
+		ctx.lineTo(405,160);
+
+		ctx.moveTo(395,240);
+		ctx.lineTo(405,240);
+
+		ctx.moveTo(395,320);
+		ctx.lineTo(405,320);
+
+		ctx.moveTo(395,480);
+		ctx.lineTo(405,480);
+
+		ctx.moveTo(395,560);
+		ctx.lineTo(405,560);
+
+		ctx.moveTo(395,640);
+		ctx.lineTo(405,640);
+
+		ctx.moveTo(395,720);
+		ctx.lineTo(405,720);
+
+		ctx.strokeStyle = "#f00";
+		ctx.stroke();
+	}
+
 	getCoords()
-	draw()
+	drawFunction()
+	showAxes()
 
 }
