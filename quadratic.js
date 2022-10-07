@@ -279,6 +279,7 @@ function canvasGraph(){
 
 	let canvas = document.querySelector('canvas');
 	let ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 	function getCoords() {
 
@@ -308,10 +309,20 @@ function canvasGraph(){
 
 	}
 
+	// function drawFunction() {
+	// 	for (let i = 0; i < coords.length; i++) {
+	// 		ctx.fillRect(((coords[i][0]*80)+400),((800-(coords[i][1]*80))-400),1,1)
+	// 	}
+	// }
+
 	function drawFunction() {
 		for (let i = 0; i < coords.length; i++) {
-			ctx.fillRect(((coords[i][0]*80)+400),((800-(coords[i][1]*80))-400),1,1)
+			ctx.moveTo( ((coords[i][0]*80)+400) , ((800-(coords[i][1]*80))-400) );
+			// ctx.lineTo( ((coords[i+1][0]*80)+400) , ((800-(coords[i+1][1]*80))-400) );
 		}
+		ctx.strokeStyle = "#f00";
+		ctx.stroke();
+
 	}
 
 	function showAxes() {
