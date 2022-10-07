@@ -119,6 +119,8 @@ function quadraticFormula(a,b,c) {
 		}
 	}
 
+// Broken Code
+
 	function PosNeg() {
 		let discriminant = b**2 - (4*a*c)
 
@@ -133,6 +135,58 @@ function quadraticFormula(a,b,c) {
 		}
 		return [`Positivity: null.<br><br>`,`Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`]
 	}
+
+// Good Code to Convert
+
+
+	// function PosNeg() {
+	// 	let discriminant = b**2 - (4*a*c)
+
+
+	// 	if (discriminant < 0) {
+	// 		if (concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: (-∞ ; +∞).<br><br>`
+	// 			posNegArray[1] = `Negativity: null.<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 		else if (!concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: null.<br><br>`
+	// 			posNegArray[1] = `Negativity: (-∞ ; +∞).<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 	}
+	// 	else if (discriminant == 0) {
+	// 		if (concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
+	// 			posNegArray[1] = `Negativity: null.<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 		else if (!concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: null.<br><br>`
+	// 			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[0]} ; +∞).<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 	}
+	// 	else if (discriminant > 0) {
+	// 		if (concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+	// 			posNegArray[1] = `Negativity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 		else if (!concavity()) {
+	// 			posNegArray = []
+	// 			posNegArray[0] = `Positivity: (${XInt()[0]} ; ${XInt()[1]}).<br><br>`
+	// 			posNegArray[1] = `Negativity: (-∞ ; ${XInt()[0]}) ; (${XInt()[1]} ; +∞).<br><br>`
+	// 			return posNegArray
+	// 		}
+	// 	}
+	// }
+
 
 	function IncDec() {
 		if (concavity()) {
@@ -204,7 +258,6 @@ function show() {
 	document.getElementById("parrafo_a").innerHTML ="A: "+a_value;
 	document.getElementById("parrafo_b").innerHTML ="B: "+b_value;
 	document.getElementById("parrafo_c").innerHTML ="C: "+c_value;
-	// quadraticFormula
 	
 
 	document.getElementById("Formula").innerHTML = quadraticFormula(a_value,b_value,c_value)[0]+
@@ -219,7 +272,6 @@ function show() {
 		"\n"+quadraticFormula(a_value,b_value,c_value)[9]+
 		"\n"+quadraticFormula(a_value,b_value,c_value)[10];
 
-	// quadraticFormula(a_value,b_value,c_value)
 }
 
 	let canvas = document.querySelector('canvas');
@@ -282,7 +334,7 @@ function canvasGraph(){
 
 	function draw() {
 		for (let i = 0; i < coords.length; i++) {
-			ctx.fillRect((coords[i][0]*80),(800-(coords[i][1]*80)),1,1)
+			ctx.fillRect(((coords[i][0]*80)+400),((800-(coords[i][1]*80))-400),1,1)
 		}
 	}
 
