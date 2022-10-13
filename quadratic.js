@@ -280,7 +280,7 @@ function canvasGraph(){
 
 		coords = []
 
-		for (let i = -5; i < 4.9999;) {
+		for (let i = -100; i < 99.9999;) {
 			i = i + 0.0002;
 			coords.push(Coordinates(i))
 		}
@@ -303,8 +303,8 @@ function canvasGraph(){
 		if (concavity() == true) {
 			for (let i = 0; i < coords.length; i++) {
 				inext = i++
-				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
-				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
+				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + ( canvas.width / 2 ) ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
+				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + ( canvas.width / 2 ) ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
 			}
 		}
 		else {
@@ -335,10 +335,18 @@ function canvasGraph(){
 			xPos = 800 +  ( 80 * yVertex ) - 560
 		}
 
+
+		// Y AXIS
+
+		ctx.moveTo( 400 - ( 80 * xVertex ) , 0 ) ;
+		ctx.lineTo( 400 - ( 80 * xVertex ) , 800 );
+		yPos = 400 - ( 80 * xVertex )
+
+
 		// X DIVS
 
 		xDiv_Spacing = 80
-		for (let xDiv = 0; xDiv <= canvas.width;) {
+		for (let xDiv = (yPos - canvas.width) ; xDiv <= canvas.width;) {
 			ctx.moveTo(xDiv , (xPos - 5) );
 			ctx.lineTo(xDiv , (xPos + 5) );
 			xDiv = xDiv + xDiv_Spacing
@@ -348,17 +356,11 @@ function canvasGraph(){
 		ctx.stroke();
 
 
-		// Y AXIS
-
-		ctx.moveTo( 400 - ( 80 * xVertex ) , 0 ) ;
-		ctx.lineTo( 400 - ( 80 * xVertex ) , 800 );
-		yPos = 400 - ( 80 * xVertex )
-
 		// Y DIVS
 
 
 		yDiv_Spacing = 80
-		for (let yDiv = 0; yDiv <= canvas.width;) {
+		for (let yDiv = (xPos - canvas.height) ; yDiv <= canvas.height;) {
 			ctx.moveTo( (yPos - 5) , yDiv );
 			ctx.lineTo( (yPos + 5) , yDiv );
 			yDiv = yDiv + yDiv_Spacing
