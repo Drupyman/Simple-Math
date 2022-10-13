@@ -211,9 +211,9 @@ function quadraticFormula(a,b,c) {
 
 
 function show() {
-	let a_value = parseInt(document.getElementById("a").value);
-	let b_value = parseInt(document.getElementById("b").value);
-	let c_value = parseInt(document.getElementById("c").value);
+	let a_value = parseFloat(document.getElementById("a").value);
+	let b_value = parseFloat(document.getElementById("b").value);
+	let c_value = parseFloat(document.getElementById("c").value);
 
 	if (isNaN(a_value)){
 		a_value = 0;
@@ -249,15 +249,29 @@ function canvasGraph(){
 
 	let canvas = document.querySelector('canvas');
 	let ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+
+	let a = parseFloat(document.getElementById("a").value);
+	let b = parseFloat(document.getElementById("b").value);
+	let c = parseFloat(document.getElementById("c").value);
+
+	if (isNaN(a)){
+		a = 0;
+	}
+	if (isNaN(b)){
+		b = 0;
+	}
+	if (isNaN(c)){
+		c = 0;
+	}
+
+
+	function clear() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+	}
 
 
 	function getCoords() {
-
-		let a = parseInt(document.getElementById("a").value);
-		let b = parseInt(document.getElementById("b").value);
-		let c = parseInt(document.getElementById("c").value);
-
 
 		function Coordinates(xCoord) {
 			let yCoord =a*(Math.pow(xCoord,2)) + (b*xCoord) + c;
@@ -267,19 +281,39 @@ function canvasGraph(){
 		coords = []
 
 		for (let i = -5; i < 4.9999;) {
-			i = i + 0.0004;
+			i = i + 0.0002;
 			coords.push(Coordinates(i))
 		}
 
 	}
 
 
-	function drawFunction() {
-		for (let i = 0; i < coords.length; i++) {
-			inext = i++
-			ctx.moveTo( ((coords[i][0]*80)+400) , ((800-(coords[i][1]*80))-400) );
-			ctx.lineTo( ((coords[inext][0]*80)+400) , ((800-(coords[inext][1]*80))-400) );
+	function concavity() {
+		if (a > 0) {
+			return true
 		}
+		else if (a < 0) {
+			return false
+		}
+	}
+
+
+	function drawFunction() {
+
+		if (concavity() == true) {
+			for (let i = 0; i < coords.length; i++) {
+				inext = i++
+				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
+				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
+			}
+		}
+		else {
+			for (let i = 0; i < coords.length; i++) {
+				inext = i++
+				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 560 ) );
+				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 560 ) );
+			}
+		}														
 		ctx.strokeStyle = "#f00";
 		ctx.stroke();
 	}
@@ -287,76 +321,57 @@ function canvasGraph(){
 
 	function showAxes() {
 
-		ctx.moveTo(0,400);
-		ctx.lineTo(800,400);
+		// X AXIS
 
-		ctx.moveTo(400,0);
-		ctx.lineTo(400,800);
 
+		if (concavity() == true) {
+			ctx.moveTo( 0 , ( 800 +  ( 80 * yVertex ) - 240 ) );
+			ctx.lineTo( 800 , ( 800 +  ( 80 * yVertex ) - 240 ) );
+			xPos = 800 +  ( 80 * yVertex ) - 240
+		}
+		else {
+			ctx.moveTo( 0 , ( 800 +  ( 80 * yVertex ) - 560 ) );
+			ctx.lineTo( 800 , ( 800 +  ( 80 * yVertex ) - 560 ) );
+			xPos = 800 +  ( 80 * yVertex ) - 560
+		}
+
+		// X DIVS
+
+		xDiv_Spacing = 80
+		for (let xDiv = 0; xDiv <= canvas.width;) {
+			ctx.moveTo(xDiv , (xPos - 5) );
+			ctx.lineTo(xDiv , (xPos + 5) );
+			xDiv = xDiv + xDiv_Spacing
+		}
+		
 		ctx.strokeStyle = "#f00";
 		ctx.stroke();
 
 
-		ctx.moveTo(80,395);
-		ctx.lineTo(80,405);
+		// Y AXIS
 
-		ctx.moveTo(160,395);
-		ctx.lineTo(160,405);
+		ctx.moveTo( 400 - ( 80 * xVertex ) , 0 ) ;
+		ctx.lineTo( 400 - ( 80 * xVertex ) , 800 );
+		yPos = 400 - ( 80 * xVertex )
 
-		ctx.moveTo(240,395);
-		ctx.lineTo(240,405);
+		// Y DIVS
 
-		ctx.moveTo(320,395);
-		ctx.lineTo(320,405);
 
-		ctx.moveTo(480,395);
-		ctx.lineTo(480,405);
-
-		ctx.moveTo(560,395);
-		ctx.lineTo(560,405);
-
-		ctx.moveTo(640,395);
-		ctx.lineTo(640,405);
-
-		ctx.moveTo(720,395);
-		ctx.lineTo(720,405);
-
+		yDiv_Spacing = 80
+		for (let yDiv = 0; yDiv <= canvas.width;) {
+			ctx.moveTo( (yPos - 5) , yDiv );
+			ctx.lineTo( (yPos + 5) , yDiv );
+			yDiv = yDiv + yDiv_Spacing
+		}
+		
 		ctx.strokeStyle = "#f00";
 		ctx.stroke();
 
-
-		ctx.moveTo(395,80);
-		ctx.lineTo(405,80);
-
-		ctx.moveTo(395,160);
-		ctx.lineTo(405,160);
-
-		ctx.moveTo(395,240);
-		ctx.lineTo(405,240);
-
-		ctx.moveTo(395,320);
-		ctx.lineTo(405,320);
-
-		ctx.moveTo(395,480);
-		ctx.lineTo(405,480);
-
-		ctx.moveTo(395,560);
-		ctx.lineTo(405,560);
-
-		ctx.moveTo(395,640);
-		ctx.lineTo(405,640);
-
-		ctx.moveTo(395,720);
-		ctx.lineTo(405,720);
-
-		ctx.strokeStyle = "#f00";
-		ctx.stroke();
 	}
 
-
+	clear()
 	getCoords()
 	drawFunction()
 	showAxes()
-
 
 }
