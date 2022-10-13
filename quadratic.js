@@ -300,18 +300,21 @@ function canvasGraph(){
 
 	function drawFunction() {
 
+		xDiv_Spacing = canvas.width / 10
+		yDiv_Spacing = canvas.height / 10
+
 		if (concavity() == true) {
 			for (let i = 0; i < coords.length; i++) {
 				inext = i++
-				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + ( canvas.width / 2 ) ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
-				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + ( canvas.width / 2 ) ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 240 ) );
+				ctx.moveTo( ( (coords[i][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 ) ) );
+				ctx.lineTo( ( (coords[inext][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 ) ) );
 			}
 		}
 		else {
 			for (let i = 0; i < coords.length; i++) {
 				inext = i++
-				ctx.moveTo( ( (coords[i][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 560 ) );
-				ctx.lineTo( ( (coords[inext][0]*80) - ( 80 * xVertex ) + 400 ) , ( ( 800 - (coords[i][1]*80) ) + ( 80 * yVertex ) - 560 ) );
+				ctx.moveTo( ( (coords[i][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
+				ctx.lineTo( ( (coords[inext][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
 			}
 		}														
 		ctx.strokeStyle = "#f00";
@@ -325,27 +328,25 @@ function canvasGraph(){
 
 
 		if (concavity() == true) {
-			ctx.moveTo( 0 , ( 800 +  ( 80 * yVertex ) - 240 ) );
-			ctx.lineTo( 800 , ( 800 +  ( 80 * yVertex ) - 240 ) );
-			xPos = 800 +  ( 80 * yVertex ) - 240
+			ctx.moveTo( 0 , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 ) ) );
+			ctx.lineTo( canvas.width , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 ) ) );
+			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 )
 		}
 		else {
-			ctx.moveTo( 0 , ( 800 +  ( 80 * yVertex ) - 560 ) );
-			ctx.lineTo( 800 , ( 800 +  ( 80 * yVertex ) - 560 ) );
-			xPos = 800 +  ( 80 * yVertex ) - 560
+			ctx.moveTo( 0 , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
+			ctx.lineTo( canvas.width , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
+			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 )
 		}
 
 
 		// Y AXIS
 
-		ctx.moveTo( 400 - ( 80 * xVertex ) , 0 ) ;
-		ctx.lineTo( 400 - ( 80 * xVertex ) , 800 );
-		yPos = 400 - ( 80 * xVertex )
-
+		ctx.moveTo( ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex ) , 0 ) ;
+		ctx.lineTo( ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex ) , canvas.height );
+		yPos = ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex )
 
 		// X DIVS
 
-		xDiv_Spacing = 80
 		for (let xDiv = (yPos - canvas.width) ; xDiv <= canvas.width;) {
 			ctx.moveTo(xDiv , (xPos - 5) );
 			ctx.lineTo(xDiv , (xPos + 5) );
@@ -358,8 +359,6 @@ function canvasGraph(){
 
 		// Y DIVS
 
-
-		yDiv_Spacing = 80
 		for (let yDiv = (xPos - canvas.height) ; yDiv <= canvas.height;) {
 			ctx.moveTo( (yPos - 5) , yDiv );
 			ctx.lineTo( (yPos + 5) , yDiv );
