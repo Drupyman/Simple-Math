@@ -302,6 +302,7 @@ function canvasGraph(){
 
 		xDiv_Spacing = canvas.width / 10
 		yDiv_Spacing = canvas.height / 10
+		ctx.beginPath();
 
 		if (concavity() == true) {
 			for (let i = 0; i < coords.length; i++) {
@@ -317,7 +318,9 @@ function canvasGraph(){
 				ctx.lineTo( ( (coords[inext][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
 			}
 		}														
-		ctx.strokeStyle = "#f00";
+		ctx.strokeStyle = "green";
+		ctx.lineWidth = 2
+		ctx.lineCap = "round"
 		ctx.stroke();
 	}
 
@@ -326,6 +329,7 @@ function canvasGraph(){
 
 		// X AXIS
 
+		ctx.beginPath();
 
 		if (concavity() == true) {
 			ctx.moveTo( 0 , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 ) ) );
@@ -338,14 +342,27 @@ function canvasGraph(){
 			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 )
 		}
 
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 2
+		ctx.stroke();
+
 
 		// Y AXIS
+
+		ctx.beginPath();
 
 		ctx.moveTo( ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex ) , 0 ) ;
 		ctx.lineTo( ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex ) , canvas.height );
 		yPos = ( canvas.width / 2 ) - ( xDiv_Spacing * xVertex )
 
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 2
+		ctx.stroke();
+
+
 		// X DIVS
+
+		ctx.beginPath();
 
 		for (let xDiv = (yPos - canvas.width) ; xDiv <= canvas.width;) {
 			ctx.moveTo(xDiv , (xPos - 5) );
@@ -353,11 +370,14 @@ function canvasGraph(){
 			xDiv = xDiv + xDiv_Spacing
 		}
 		
-		ctx.strokeStyle = "#f00";
+		ctx.strokeStyle = "red";
+		ctx.lineWidth = 1
 		ctx.stroke();
 
 
 		// Y DIVS
+
+		ctx.beginPath();
 
 		for (let yDiv = (xPos - canvas.height) ; yDiv <= canvas.height;) {
 			ctx.moveTo( (yPos - 5) , yDiv );
@@ -365,7 +385,8 @@ function canvasGraph(){
 			yDiv = yDiv + yDiv_Spacing
 		}
 		
-		ctx.strokeStyle = "#f00";
+		ctx.strokeStyle = "red";
+		ctx.lineWidth = 1
 		ctx.stroke();
 
 	}
