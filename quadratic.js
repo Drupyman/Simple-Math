@@ -301,7 +301,7 @@ function canvasGraph(){
 	function drawFunction() {
 
 		xDiv_Spacing = canvas.width / 10
-		yDiv_Spacing = canvas.height / 10
+		yDiv_Spacing = canvas.height / 20
 		ctx.beginPath();
 
 		if (concavity() == true) {
@@ -314,8 +314,8 @@ function canvasGraph(){
 		else {
 			for (let i = 0; i < coords.length; i++) {
 				inext = i++
-				ctx.moveTo( ( (coords[i][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
-				ctx.lineTo( ( (coords[inext][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
+				ctx.moveTo( ( (coords[i][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*17 ) ) );
+				ctx.lineTo( ( (coords[inext][0]*xDiv_Spacing) - ( xDiv_Spacing * xVertex ) + ( canvas.width / 2 ) ) , ( ( canvas.height - (coords[i][1]*yDiv_Spacing) ) + ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*17 ) ) );
 			}
 		}														
 		ctx.strokeStyle = "green";
@@ -337,9 +337,9 @@ function canvasGraph(){
 			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*3 )
 		}
 		else {
-			ctx.moveTo( 0 , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
-			ctx.lineTo( canvas.width , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 ) ) );
-			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*7 )
+			ctx.moveTo( 0 , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*17 ) ) );
+			ctx.lineTo( canvas.width , ( canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*17 ) ) );
+			xPos = canvas.height +  ( yDiv_Spacing * yVertex ) - ( yDiv_Spacing*17 )
 		}
 
 		ctx.strokeStyle = "black";
