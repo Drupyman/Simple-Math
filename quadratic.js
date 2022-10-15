@@ -171,13 +171,13 @@ function quadraticFormula(a,b,c) {
 	function AxesInt() {
 		discriminant = b**2 - (4*a*c)
 		if (discriminant <0) { 
-			return `Axes Intersections: (0 ; ${c})<br><br>`
+			return `Axes Intersections: (0 ; ${c}).<br><br>`
 		}
 		else if (discriminant == 0) {
-			return `Axes Intersections: (${XInt()[0]} ; 0) ; (0 ; ${c})<br><br>`
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (0 ; ${c}).<br><br>`
 		}
 		else if (discriminant > 0) {
-			return `Axes Intersections: (${XInt()[0]} ; 0) ; (${XInt()[1]} ; 0) ; (0 ; ${c})<br><br>`
+			return `Axes Intersections: (${XInt()[0]} ; 0) ; (${XInt()[1]} ; 0) ; (0 ; ${c}).<br><br>`
 		}
 	}
 
@@ -206,7 +206,7 @@ function quadraticFormula(a,b,c) {
 		IncDec()[1],
 		AxesInt(),
 		`Symmetry Axis: ${SymAxis()}.<br><br>`,
-		`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br><br>`]
+		`Vertex: (${Vertex()[0]} ; ${Vertex()[1]}).<br>`]
 }
 
 
@@ -224,23 +224,9 @@ function show() {
 	if (isNaN(c_value)){
 		c_value = 0;
 	}
-
-	document.getElementById("parrafo_a").innerHTML ="A: "+a_value;
-	document.getElementById("parrafo_b").innerHTML ="B: "+b_value;
-	document.getElementById("parrafo_c").innerHTML ="C: "+c_value;
 	
 
-	document.getElementById("Formula").innerHTML = quadraticFormula(a_value,b_value,c_value)[0]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[1]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[2]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[3]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[4]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[5]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[6]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[7]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[8]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[9]+
-		"\n"+quadraticFormula(a_value,b_value,c_value)[10];
+	document.getElementById("Analysis").innerHTML = quadraticFormula(a_value,b_value,c_value).join("")
 
 }
 
