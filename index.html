@@ -5,26 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Analysis of Quadratic Functions</title>
 		<script src=quadratic.js></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<header>
-			<h1>Analysis of Quadratic Functions</h1>
-			<form>
+			<h1>ANALYSIS OF QUADRATIC FUNCTIONS</h1>
+			<form class="values">
 				<input type="number" name="a" id="a" >
 				<input type="number" name="b" id="b" >
 				<input type="number" name="c" id="c" >
-				<input type="button" name="Draw" value="DRAW" onclick="show(),canvasGraph()">
+				<input class="draw" type="button" name="draw" value="DRAW" onclick="show(),canvasGraph()">
 			</form>
 		</header>
 		<hr/>
 		<main>
 			<section>
-				<article>
+				<article class="function1">
 					<div>
-						<canvas class="canvas" width="600" height="600" style="border: 1px solid #000000"></canvas>
+						<canvas class="canvas" width="500" height="500" style="border: 1px solid #000000"></canvas>
 					</div>
-					<div>
-						<p id="Analysis"></p>
+					<div id="analysis">
 					</div>
 				</article>
 			</section>

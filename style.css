@@ -1,0 +1,31 @@
+header {
+	display: flex;
+	flex-flow:column;
+	align-items: center;
+}
+
+header h1 {
+	font-family: Arial;
+}
+
+.values input {
+	font-size: 25px;
+	text-align: center;
+	width: 50px;
+}
+
+.values .draw {
+	width: 100px;
+}
+
+
+.function1	{
+	display: flex;
+	flex-flow: row;
+	justify-content:center;
+	align-items: center;
+}
+
+#analysis p {
+	margin: 0px 70px;
+}

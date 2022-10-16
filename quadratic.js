@@ -226,7 +226,7 @@ function show() {
 	}
 	
 
-	document.getElementById("Analysis").innerHTML = quadraticFormula(a_value,b_value,c_value).join("")
+	document.getElementById("analysis").innerHTML = `<p>${quadraticFormula(a_value,b_value,c_value).join("")}<p>`
 
 }
 
